@@ -41,5 +41,5 @@ jobs:
           php artisan config:clear
       - name: Migrate database
         run: php artisan migrate
-      - name: Execute tests (Unit and Feature tests) via PHPUnit
+      - name: Execute tests (Unit and Feature tests) via PEST
         run: ./vendor/bin/pest
