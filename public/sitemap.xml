@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <sitemap>
+        <loc>http://localhost/browse_sitemap.xml</loc>
+            <lastmod>2022-11-26T22:06:14+00:00</lastmod>
+    </sitemap>
+    <sitemap>
+        <loc>http://localhost/product_sitemap.xml</loc>
+            <lastmod>2022-11-26T22:06:14+00:00</lastmod>
+    </sitemap>
+    <sitemap>
+        <loc>http://localhost/index_sitemap.xml</loc>
+            <lastmod>2022-11-26T22:06:14+00:00</lastmod>
+    </sitemap>
+</sitemapindex>
