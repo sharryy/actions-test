@@ -26,12 +26,12 @@ jobs:
           echo "DB_PORT=${{ env.DB_PORT }}"
           echo "DB_DATABASE=${{ env.DB_DATABASE }}"
           echo "DB_USERNAME=${{ env.DB_USERNAME }}"
-          echo "DB_PASSWORD=${{ env.DB_PASSWORD }}"
+          echo "DB_PASSWORD=$DB_PASSWORD"
           sed -i "s/DB_HOST=.*/DB_HOST=${{ env.DB_HOST }}/g" .env
           sed -i "s/DB_PORT=.*/DB_PORT=${{ env.DB_PORT }}/g" .env
           sed -i "s/DB_DATABASE=.*/DB_DATABASE=${{ env.DB_DATABASE }}/g" .env
           sed -i "s/DB_USERNAME=.*/DB_USERNAME=${{ env.DB_USERNAME }}/g" .env
-          sed -i "s/DB_PASSWORD=.*/DB_PASSWORD=${{ env.DB_PASSWORD }}/g" .env
+          sed -i "s/DB_PASSWORD=.*/DB_PASSWORD=$DB_PASSWORD/g" .env
 
       - name: Install Dependencies
         run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
