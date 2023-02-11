@@ -4,6 +4,14 @@ on:
   push:
     branches: [ "main" ]
 
+env:
+  DB_HOST: ${{ secrets.DB_HOST }}
+  DB_PORT: ${{ secrets.DB_PORT }}
+  DB_DATABASE: ${{ secrets.DB_DATABASE }}
+  DB_USERNAME: ${{ secrets.DB_USERNAME }}
+  DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+  TEST_SECRET: "I_AM_A_SECRET"
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -11,22 +19,15 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-        secrets: inherit
       - name: Copy .env
         run: php -r "file_exists('.env') || copy('.env.example', '.env');"
       - name: Replace .env credentials
-        env:
-          HOST: ${{ secrets.DB_HOST }}
-          PORT: ${{ secrets.DB_PORT }}
-          DATABASE: ${{ secrets.DB_DATABASE }}
-          USERNAME: ${{ secrets.DB_USERNAME }}
-          PASSWORD: ${{ secrets.DB_PASSWORD }}
         run: |
-          echo "DB_HOST=$HOST"
-          echo "DB_PORT=$PORT"
-          echo "DB_DATABASE=$DATABASE"
-          echo "DB_USERNAME=$USERNAME"
-
+          sed -i "s/DB_HOST=.*/DB_HOST=${{ env.DB_HOST }}/g" .env
+          sed -i "s/DB_PORT=.*/DB_PORT=${{ env.DB_PORT }}/g" .env
+          sed -i "s/DB_DATABASE=.*/DB_DATABASE=${{ env.DB_DATABASE }}/g" .env
+          sed -i "s/DB_USERNAME=.*/DB_USERNAME=${{ env.DB_USERNAME }}/g" .env
+          sed -i "s/DB_PASSWORD=.*/DB_PASSWORD=${{ env.DB_PASSWORD }}/g" .env
 
       - name: Install Dependencies
         run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
